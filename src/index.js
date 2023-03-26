@@ -7,6 +7,7 @@ const { start } = require('repl');
 
 const ytdlpPath = require.resolve('youtube-dl-exec');
 console.log(ytdlpPath)
+console.log(youtubedl);
 
 const app = express();
 
