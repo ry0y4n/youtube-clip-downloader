@@ -21,6 +21,7 @@ const getVideo = (url, flags) => {
 async function downloadVideo (url, startTime, duration) {
     const info = await getInfo(url);
     const formats = info.formats;
+    console.log(info);
 
     // console.log(formats)
     formats.forEach((format, index) => {
