@@ -5,6 +5,9 @@ const fs = require('fs');
 const express = require('express');
 const { start } = require('repl');
 
+const ytdlpPath = require.resolve('youtube-dl-exec');
+console.log(ytdlpPath)
+
 const app = express();
 
 const getInfo = (url, flags) => {
