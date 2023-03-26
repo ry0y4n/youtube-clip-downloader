@@ -2,7 +2,10 @@
 
 const youtubedl = require('youtube-dl-exec');
 const fs = require('fs');
-const express = require('express')
+const express = require('express');
+const { start } = require('repl');
+
+const app = express();
 
 const getInfo = (url, flags) => {
     return youtubedl(url, { dumpSingleJson: true, ...flags });
@@ -12,7 +15,7 @@ const getVideo = (url, flags) => {
     return youtubedl(url, {...flags})
 }
 
-async function main (url) {
+async function downloadVideo (url, startTime, duration) {
     const info = await getInfo(url);
     const formats = info.formats;
 
@@ -22,11 +25,23 @@ async function main (url) {
     });
 
     // 22→1280*720, 18→640*360
-    getVideo(url, {
+    return getVideo(url, {
         f: "22/18",
-        downloadSections: "*0:30-1:00",
+        downloadSections: `*${startTime}-${startTime+duration}`,
         o: `${__dirname}/../video/video-clip.%(ext)s`
     });
 }
 
-main("https://www.youtube.com/watch?v=992_EydsfFY");
+app.get("/download", async (req, res) => {
+    const url = req.query.url;
+	const startTime = req.query.start_time;
+    const duration = req.query.duration;
+
+    await downloadVideo(url, startTime, duration);
+
+    console.log('completed downloading');
+
+    res.sendStatus(200);
+});
+
+app.listen(process.env.PORT || 8080);
