@@ -44,6 +44,9 @@ app.get("/download", async (req, res) => {
 
     await downloadVideo(url, startTime, duration);
 
+    const filenames = fs.readdirSync(`${__dirname}/../video`);
+    console.log(filenames)
+
     console.log('completed downloading');
 
     res.sendStatus(200);
