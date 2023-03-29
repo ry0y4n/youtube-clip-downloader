@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const youtubedl = require('youtube-dl-exec');
 const fs = require('fs');
@@ -18,11 +18,11 @@ const client = new TwitterApi({
 
 const getInfo = (url, flags) => {
     return youtubedl(url, { dumpSingleJson: true, ...flags });
-}
+};
 
 const getVideo = (url, flags) => {
-    return youtubedl(url, {...flags})
-}
+    return youtubedl(url, {...flags});
+};
 
 async function downloadVideo (url, startTime, duration) {
     const info = await getInfo(url);
@@ -38,7 +38,6 @@ async function downloadVideo (url, startTime, duration) {
     return getVideo(url, {
         f: "22/18",
         downloadSections: `*${startTime}-${parseInt(startTime)+parseInt(duration)}`,
-        // downloadSections: `*10-40`,
         o: `${__dirname}/../video/video-clip.%(ext)s`
     });
 }

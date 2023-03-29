@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint src/index.js",
+    "lint:fix": "eslint src/index.js --fix"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,8 @@
     "express": "^4.18.2",
     "twitter-api-v2": "^1.14.2",
     "youtube-dl-exec": "^2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0"
   }
 }
