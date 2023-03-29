@@ -6,8 +6,6 @@ const express = require('express');
 const { start } = require('repl');
 
 const ytdlpPath = require.resolve('youtube-dl-exec');
-console.log(ytdlpPath)
-console.log(youtubedl);
 
 const app = express();
 
@@ -22,7 +20,6 @@ const getVideo = (url, flags) => {
 async function downloadVideo (url, startTime, duration) {
     const info = await getInfo(url);
     const formats = info.formats;
-    console.log(info);
 
     // console.log(formats)
     formats.forEach((format, index) => {
