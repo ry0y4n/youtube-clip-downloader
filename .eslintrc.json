@@ -1,0 +1,14 @@
+{
+    "extends": ["eslint:recommended"],
+    "plugins": [],
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "env": {
+        "node": true
+    },
+    "globals": {},
+    "rules": {
+        "semi": ["error", "always"]
+    }
+}
