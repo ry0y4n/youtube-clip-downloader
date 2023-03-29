@@ -7,11 +7,13 @@ const { TwitterApi } = require('twitter-api-v2');
 
 const app = express();
 
+const secrets = JSON.parse(fs.readFileSync('secrets.json'));
+
 const client = new TwitterApi({
-    appKey: 'kycgG7g7ScsZMAQU6pIL8CKAI',
-    appSecret: 'UQVTQrmQEIFBGahuVUTR3FjQgZPZkiT9Hfk7VqJxiPBM1qxiV0',
-    accessToken: '1437613087-yK7chyOK7r2MFOCybEQPutTWVLiBTyjk15mKmOd',
-    accessSecret: 'TPLAN3hN9dQ13PvfBC9giZ4NNu48vrJWzfdpV2tyDf7YP',
+    appKey: secrets["appKey"],
+    appSecret: secrets["appSecret"],
+    accessToken: secrets["accessToken"],
+    accessSecret: secrets["accessSecret"]
 });
 
 const getInfo = (url, flags) => {
