@@ -29,10 +29,12 @@ async function downloadVideo (url, startTime, duration) {
         if (format.ext == 'mp4' && format.vcodec != 'none' && format.acodec != 'none') console.log(`${index}: ${format.format_id} (resolution: ${format.resolution}), (fps: ${format.fps}), (ext: ${format.ext})`);
     });
 
+
     // 22→1280*720, 18→640*360
     return getVideo(url, {
         f: "22/18",
-        downloadSections: `*${startTime}-${startTime+duration}`,
+        downloadSections: `*${startTime}-${parseInt(startTime)+parseInt(duration)}`,
+        // downloadSections: `*10-40`,
         o: `${__dirname}/../video/video-clip.%(ext)s`
     });
 }
